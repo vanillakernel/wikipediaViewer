@@ -1,0 +1,27 @@
+.col-centered{  
+  float: none;
+  margin: 0 auto;
+}
+
+.story { 
+	
+  height: 320px; 
+  width: 200px; 
+  overflow: hidden; 
+  margin : 5px;
+  padding: 0px;
+}
+.storyImage { 
+	
+  height: 200px; 
+  width: 200px; 
+  overflow: hidden; 
+  
+}
+.storyText { 
+	
+  height: 100px; 
+  width: 200px; 
+  overflow: hidden; 
+  padding: 3px;
+}
