@@ -1,29 +1,8 @@
-///////////////////
-//  Global Vars  // Keep to a minimum!!
-///////////////////
-
 // NO GLOBAL VARIABLES!!!
-
-
-// Async function that gets the data...eventually
-function getStreamData(){
- // query="linux"
-  $.ajax({
-   url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+query+ '&limit=10&namespace=0&format=json',
-   dataType: 'jsonp',
-   success: function(data){
-     updateHTML(data);
-   }
- });
-  return;
-}
 
 // Callback function that updates html when the async getJSON is complete.
 function updateHTML(data){
-  if(document.getElementById('storyContainer').innerHTML=="Please wait while the stories are populated."){
-    document.getElementById('storyContainer').innerHTML="";
-  }
-
+ document.getElementById('storyContainer').innerHTML="";
  for (i in data[1]){
   if (data[i] !== null){
     var title= (data[1][i]);
@@ -32,14 +11,9 @@ function updateHTML(data){
      console.log(data);
     document.getElementById('storyContainer').innerHTML += "<div class='well result col-sm-8'><div class='resultTitle'><b><a href='"+link+"'>" + title  + "</a></b></div><div class='description'>"+ description+ "</div></div>";
   }
-
 }
-return "fell through";
+return false;
 }
-
-
-
-
 
 ///////////////////
 // Doc Ready     //
@@ -47,7 +21,6 @@ return "fell through";
 // This is the main call.
 // Make sure you load jQuery in your html doc FIRST!!
 jQuery(document).ready(function($) {
-   //getStreamData();
 
   // Get that sweet autocomplete nectar. 
   $("#autocomplete").autocomplete({
@@ -62,13 +35,12 @@ jQuery(document).ready(function($) {
        success: function(data) {
                   console.log(data);
                   updateHTML(data);
-                  //response(data[1]);
                 }
      });
    }
   });
-  $( "#autocomplete" ).submit(function( event ) {
-      alert( "Handler for .submit() called." );
-        event.preventDefault();
-  });
+  //$( "#autocomplete" ).submit(function( event ) {
+  //    alert( "Handler for .submit() called." );
+  //      event.preventDefault();
+ // });
 });
