@@ -7,12 +7,11 @@
 
 // Async function that gets the data...eventually
 function getStreamData(){
-  query="linux"
+ // query="linux"
   $.ajax({
    url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search='+query+ '&limit=10&namespace=0&format=json',
    dataType: 'jsonp',
    success: function(data){
-     console.log(data);
      updateHTML(data);
    }
  });
@@ -30,6 +29,7 @@ function updateHTML(data){
     var title= (data[1][i]);
     var description = (data[2][i]);
     var link = (data[3][i]);
+     console.log(data);
     document.getElementById('storyContainer').innerHTML += "<div class='well result col-sm-8'><div class='resultTitle'><b><a href='"+link+"'>" + title  + "</a></b></div><div class='description'>"+ description+ "</div></div>";
   }
 
@@ -47,7 +47,7 @@ return "fell through";
 // This is the main call.
 // Make sure you load jQuery in your html doc FIRST!!
 jQuery(document).ready(function($) {
-   getStreamData();
+   //getStreamData();
 
   // Get that sweet autocomplete nectar. 
   $("#autocomplete").autocomplete({
@@ -57,11 +57,12 @@ jQuery(document).ready(function($) {
        dataType: "jsonp",
        data: {
          'action': "opensearch",
-         'format': "json",
          'search': request.term
        },
        success: function(data) {
-                  response(data[1]);
+                  console.log(data);
+                  updateHTML(data);
+                  //response(data[1]);
                 }
      });
    }
