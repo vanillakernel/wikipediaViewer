@@ -30,12 +30,16 @@ function updateHTML(data){
     var title= (data[1][i]);
     var description = (data[2][i]);
     var link = (data[3][i]);
-    document.getElementById('storyContainer').innerHTML += "<div class='well story col-sm-4'><div class='storyText'><b>" + title  + "</b> <a href='"+link+"'>"+ description+ " </a> </div></div>";
+    document.getElementById('storyContainer').innerHTML += "<div class='well result col-sm-8'><div class='resultTitle'><b><a href='"+link+"'>" + title  + "</a></b></div><div class='description'>"+ description+ "</div></div>";
   }
 
 }
 return "fell through";
 }
+
+
+
+
 
 ///////////////////
 // Doc Ready     //
@@ -43,5 +47,27 @@ return "fell through";
 // This is the main call.
 // Make sure you load jQuery in your html doc FIRST!!
 jQuery(document).ready(function($) {
-   getStreamData();	   
+   getStreamData();
+
+  // Get that sweet autocomplete nectar. 
+  $("#autocomplete").autocomplete({
+   source: function(request, response) {
+     $.ajax({
+       url: "http://en.wikipedia.org/w/api.php",
+       dataType: "jsonp",
+       data: {
+         'action': "opensearch",
+         'format': "json",
+         'search': request.term
+       },
+       success: function(data) {
+                  response(data[1]);
+                }
+     });
+   }
+  });
+  $( "#autocomplete" ).submit(function( event ) {
+      alert( "Handler for .submit() called." );
+        event.preventDefault();
+  });
 });

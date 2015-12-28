@@ -3,25 +3,25 @@
   margin: 0 auto;
 }
 
-.story { 
+.result { 
 	
-  height: 320px; 
-  width: 200px; 
+  height: 10%; 
+  width: 100%; 
   overflow: hidden; 
   margin : 5px;
   padding: 0px;
 }
-.storyImage { 
+.resultTitle { 
 	
-  height: 200px; 
-  width: 200px; 
+  height: 15%; 
+  width: 80%; 
   overflow: hidden; 
   
 }
-.storyText { 
+.resultText { 
 	
-  height: 100px; 
-  width: 200px; 
+  height: 60px; 
+  width: 100%; 
   overflow: hidden; 
   padding: 3px;
 }
